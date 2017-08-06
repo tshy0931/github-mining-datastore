@@ -9,7 +9,7 @@ trait JsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val dateTimeFormat = DateTimeFormat
   implicit val userFormat = jsonFormat13(User)
-  implicit val repoFormat = jsonFormat15(Repo)
+  implicit val repoFormat = jsonFormat16(Repo)
 
 }
 
