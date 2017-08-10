@@ -10,3 +10,5 @@ libraryDependencies ++= Seq(
   "com.outworkers" % "phantom-dsl_2.12" % "2.9.2",
   "org.apache.kafka" % "connect-api" % "0.11.0.0"
 )
+
+resolvers += Resolver.bintrayRepo("cakesolutions", "maven")

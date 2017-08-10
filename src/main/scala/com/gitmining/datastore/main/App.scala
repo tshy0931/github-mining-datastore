@@ -5,6 +5,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.gitmining.datastore.database.cassandra.{Cassandra, CassandraDatabaseProvider}
+import com.gitmining.datastore.kafka.consumer.DataConsumer
 import com.gitmining.datastore.service.DataStoreService
 import com.gitmining.datastore.service.routes.DataStoreServiceRoutes
 

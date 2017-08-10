@@ -14,6 +14,7 @@ object Repo {
 }
 
 final case class Repo(
+                       group:Int, // for partitioning repos
                        id:Long,
                        name:String,
                        owner_id:Long,

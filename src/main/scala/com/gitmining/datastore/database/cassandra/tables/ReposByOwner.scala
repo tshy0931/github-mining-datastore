@@ -3,8 +3,8 @@ package com.gitmining.datastore.database.cassandra.tables
 import com.gitmining.datastore.dao.Repo
 import com.outworkers.phantom.dsl.{ClusteringOrder, Descending, Index, PartitionKey, Table}
 import org.joda.time.DateTime
-
 import scala.concurrent.Future
+import com.outworkers.phantom.dsl.context
 
 object ReposByOwner {
   case class RepoByOwner(

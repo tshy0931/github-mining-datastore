@@ -2,6 +2,17 @@ package com.gitmining.datastore.dao
 
 import org.joda.time.DateTime
 
+object User {
+  /**
+    * Group repos by their stargazer counts.
+    * @param user
+    * @return the group id this repo belongs to
+    */
+  def groupByFollowers(user: User):Int = {
+    user.followers/100
+  }
+}
+
 final case class User(
                        id:Long,
                        login:String,
@@ -17,6 +28,4 @@ final case class User(
                        public_repos:Int,
                        public_gists:Int
                      ) extends Dao
-{
 
-}

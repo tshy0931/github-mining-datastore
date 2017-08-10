@@ -8,8 +8,8 @@ import spray.json.{DefaultJsonProtocol, DeserializationException, JsString, JsVa
 trait JsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val dateTimeFormat = DateTimeFormat
-  implicit val userFormat = jsonFormat13(User)
-  implicit val repoFormat = jsonFormat16(Repo)
+  implicit val userFormat = jsonFormat13(User.apply)
+  implicit val repoFormat = jsonFormat17(Repo.apply)
 
 }
 
@@ -21,6 +21,6 @@ object DateTimeFormat extends RootJsonFormat[DateTime] {
 
   override def read(json: JsValue): DateTime = json match {
     case JsString(dateTime) => parseISO.parseDateTime(dateTime)
-    case els => throw new DeserializationException(s"Error parsing DateTime $els")
+    case els => throw DeserializationException(s"Error parsing DateTime $els")
   }
 }

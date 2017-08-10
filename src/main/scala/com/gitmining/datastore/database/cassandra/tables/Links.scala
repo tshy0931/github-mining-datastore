@@ -1,9 +1,9 @@
-package com.gitmining.datastore.database.cassandra
+package com.gitmining.datastore.database.cassandra.tables
 
 import com.outworkers.phantom.dsl.Table
 import com.outworkers.phantom.keys.{ClusteringOrder, Descending, PartitionKey}
 
-package object tables {
+object Links {
 
   case class Link(from:Long, to:Long, weight:Double)
 

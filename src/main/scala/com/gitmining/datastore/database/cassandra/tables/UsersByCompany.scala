@@ -1,20 +1,22 @@
 package com.gitmining.datastore.database.cassandra.tables
 
 import com.gitmining.datastore.dao.User
-import com.outworkers.phantom.dsl._
-
+import com.outworkers.phantom.dsl.{ClusteringOrder, Descending, PartitionKey, Table}
 import scala.concurrent.Future
+import com.outworkers.phantom.dsl.context
 
-abstract class Users extends Table[Users, User]{
+object UsersByCompany {
 
-  override lazy val tableName = "users"
+}
 
-  object group extends IntColumn with PartitionKey
+abstract class UsersByCompany extends Table[UsersByCompany, User]{
+
+  override lazy val tableName = "users_by_company"
+
+  object company extends StringColumn with PartitionKey
   object `type` extends StringColumn
-  object id extends LongColumn with Index
-  object login extends StringColumn with Index
-  object name extends OptionalStringColumn
-  object company extends StringColumn
+  object id extends LongColumn
+  object login extends StringColumn
   object location extends OptionalStringColumn
   object hireable extends OptionalBooleanColumn
   object created_at extends DateTimeColumn
@@ -25,12 +27,12 @@ abstract class Users extends Table[Users, User]{
   object public_gists extends IntColumn
   object score extends DoubleColumn with ClusteringOrder with Descending
 
-  def byId(id:Long):Future[Option[User]] = {
-    select where(_.id eqs id) one
+  def getUsersOfCompany(company:String):Future[List[User]] = {
+    select where(_.company eqs company) fetch
   }
 
-  def byIds(ids:List[Long]):Future[List[User]] = {
-    select.where(_.id in ids).fetch
+  def getUsersOfCompanies(companies:List[String]):Future[List[User]] = {
+    select where(_.company in companies) fetch
   }
 
 }
